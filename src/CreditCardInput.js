@@ -36,7 +36,7 @@ const s = StyleSheet.create({
 const CVC_INPUT_WIDTH = 70;
 const EXPIRY_INPUT_WIDTH = CVC_INPUT_WIDTH;
 const CARD_NUMBER_INPUT_WIDTH_OFFSET = 40;
-const CARD_NUMBER_INPUT_WIDTH = Dimensions.get("window").width - EXPIRY_INPUT_WIDTH - CARD_NUMBER_INPUT_WIDTH_OFFSET;
+const CARD_NUMBER_INPUT_WIDTH = Dimensions.get("window").width / 1.5 - EXPIRY_INPUT_WIDTH - CARD_NUMBER_INPUT_WIDTH_OFFSET;
 const NAME_INPUT_WIDTH = CARD_NUMBER_INPUT_WIDTH;
 const PREVIOUS_FIELD_OFFSET = 40;
 const POSTAL_CODE_INPUT_WIDTH = 120;
@@ -78,7 +78,7 @@ export default class CreditCardInput extends Component {
     },
     placeholders: {
       name: "Full Name",
-      number: "1234 5678 1234 5678",
+      number: "4444 4444 4444 4444",
       expiry: "MM/YY",
       cvc: "CVC",
       postalCode: "34567",
@@ -172,13 +172,13 @@ export default class CreditCardInput extends Component {
           <CCInput {...this._inputProps("expiry")}
             keyboardType="numeric"
             containerStyle={[s.inputContainer, inputContainerStyle, { width: EXPIRY_INPUT_WIDTH }]} />
+          { requiresName &&
+            <CCInput {...this._inputProps("name")}
+              containerStyle={[s.inputContainer, inputContainerStyle, { width: NAME_INPUT_WIDTH }]} /> }
           { requiresCVC &&
             <CCInput {...this._inputProps("cvc")}
               keyboardType="numeric"
               containerStyle={[s.inputContainer, inputContainerStyle, { width: CVC_INPUT_WIDTH }]} /> }
-          { requiresName &&
-            <CCInput {...this._inputProps("name")}
-              containerStyle={[s.inputContainer, inputContainerStyle, { width: NAME_INPUT_WIDTH }]} /> }
           { requiresPostalCode &&
             <CCInput {...this._inputProps("postalCode")}
               keyboardType="numeric"
